@@ -11,22 +11,23 @@ const useContextMenu = (editor,format,setSelection) => {
         left:'0px'
     });
 
-    const handleClick = ()=>{
-        setShowMenu(false);
-    }
-    const handleContextMenu = (e) => {
-        if(!isFormat) return;
-        setSelection(editor.selection);
-        e.preventDefault();
-        setShowMenu(true);
-        const xPos = e.pageX  + "px";
-        const yPos = e.pageY  + "px";
-        setMenuLocation({
-            top:yPos,
-            left:xPos
-        })
-    }
     useEffect(()=>{
+        const handleClick = ()=>{
+            setShowMenu(false);
+        }
+        const handleContextMenu = (e) => {
+            if(!isFormat) return;
+            setSelection(editor.selection);
+            e.preventDefault();
+            setShowMenu(true);
+            const xPos = e.pageX  + "px";
+            const yPos = e.pageY  + "px";
+            setMenuLocation({
+                top:yPos,
+                left:xPos
+            })
+        }
+        
         document.addEventListener('click',handleClick);
         document.addEventListener('contextmenu',handleContextMenu);
 
@@ -34,7 +35,7 @@ const useContextMenu = (editor,format,setSelection) => {
             document.removeEventListener('click',handleClick);
             document.removeEventListener('contextmenu',handleContextMenu);
         }
-    },[isFormat])
+    },[isFormat, editor.selection, setSelection])
 
     return [showMenu,menuLocation];
 }

@@ -193,6 +193,8 @@ export const getBlock = (props) => {
             return <Equation {...props}/>
         case 'htmlCode':
             return <HtmlCode {...props}/>
+        case 'paragraph':
+            return <p {...attributes} {...element.attr}>{children}</p>
         default :
             return <div {...element.attr} {...attributes}>{children}</div>
     }

@@ -35,7 +35,7 @@ const TableContextMenu = (props)=>{
             text:'Insert Row Above',
             action:{
                 type:'insertRow',
-                positon:'at'
+                position:'at'
             }
         },
         {
