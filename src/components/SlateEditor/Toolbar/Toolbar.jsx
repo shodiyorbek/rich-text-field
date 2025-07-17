@@ -16,6 +16,7 @@ import Id from '../Elements/ID/Id'
 import TableContextMenu from '../Elements/TableContextMenu/TableContextMenu'
 import CodeToTextButton from '../Elements/CodeToText/CodeToTextButton'
 import HtmlContextMenu from '../Elements/CodeToText/HtmlContextMenu';
+import FontSize from '../Elements/FontSize/FontSize'
 const Toolbar = (props)=>{
     const {handleCodeToText} = props
     const editor = useSlate();
@@ -94,6 +95,8 @@ const Toolbar = (props)=>{
                                             return <MarkButton key={element.id} {...element}/>
                                         case 'dropdown':
                                             return <Dropdown key={element.id} {...element} />
+                                        case 'font-size':
+                                            return <FontSize key={element.id} />
                                         case 'link':
                                             return <LinkButton key={element.id} active={isBlockActive(editor,'link')} editor={editor}/>
                                         case 'embed':
