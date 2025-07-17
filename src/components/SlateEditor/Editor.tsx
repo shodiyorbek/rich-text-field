@@ -26,7 +26,7 @@ const SlateEditor = ()=>{
     const editor = useMemo(() => withEquation(withHistory(withEmbeds(withTables(withLinks(withReact(createEditor())))))), []);
     const [value,setValue] = useState([
         {
-            type:'paragaph',
+            type:'paragraph',
             children:[{text:''}],
         },
     ]);
