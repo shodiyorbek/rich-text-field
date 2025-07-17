@@ -163,7 +163,7 @@ export const activeMark = (editor,format) =>{
     const defaultMarkData = {
         color:'black',
         bgColor:'black',
-        fontSize:'normal',
+        fontSize:'16px',
         fontFamily:'sans'
     } 
     const marks = Editor.marks(editor);
@@ -202,7 +202,9 @@ export const getMarked = (leaf,children) =>{
         children = <span style={{backgroundColor:leaf.bgColor}}>{children}</span>
     }
     if(leaf.fontSize){
-        const size = sizeMap[leaf.fontSize]
+        // Check if it's a pixel value or old format
+        const isPixelValue = typeof leaf.fontSize === 'string' && leaf.fontSize.includes('px');
+        const size = isPixelValue ? leaf.fontSize : sizeMap[leaf.fontSize] || leaf.fontSize;
         children = <span style={{fontSize:size}}>{children}</span>
     }
     if(leaf.fontFamily){
