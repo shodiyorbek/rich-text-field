@@ -153,8 +153,12 @@ export const getMarked = (leaf,children) =>{
 }
 
 export const getBlock = (props) => {
-    const {element,children} = props;
-    const attributes = props.attributes ?? {};
+    const {element, children, attributes} = props;
+    
+    // Ensure we have valid props
+    if (!element) {
+        return <div {...attributes}>{children}</div>;
+    }
 
     switch(element.type){
         case 'headingOne':
@@ -194,8 +198,8 @@ export const getBlock = (props) => {
         case 'htmlCode':
             return <HtmlCode {...props}/>
         case 'paragraph':
-            return <p {...attributes} {...element.attr}>{children}</p>
+            return <p {...attributes} {...(element.attr || {})}>{children}</p>
         default :
-            return <div {...element.attr} {...attributes}>{children}</div>
+            return <div {...(element.attr || {})} {...attributes}>{children}</div>
     }
 } 
