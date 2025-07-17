@@ -1,3 +1,5 @@
+'use client'
+
 import '../stylesheets/App.css';
 import Something from './SlateEditor/Editor'
 import 'katex/dist/katex.min.css';

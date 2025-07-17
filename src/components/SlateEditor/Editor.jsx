@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useCallback, useMemo, useState } from 'react';
 import { createEditor } from 'slate';
 import { withHistory } from "slate-history";
