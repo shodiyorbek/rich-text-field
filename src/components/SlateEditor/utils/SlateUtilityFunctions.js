@@ -1,4 +1,4 @@
-import { Editor, Transforms,Element as SlateElement} from 'slate'
+import { Editor, Transforms, Element as SlateElement } from 'slate'
 import {useSlateStatic} from 'slate-react'
 import Link from'../Elements/Link/Link'
 import Image from '../Elements/Embed/Image'
@@ -29,6 +29,11 @@ export const toggleBlock = (editor,format)=>{
     const isIndent = alignment.includes(format)
     const isAligned = alignment.some(alignmentType => isBlockActive(editor,alignmentType))
     
+    const { selection } = editor
+    const isCollapsed = selection && Editor.isCollapsed(editor, selection)
+    
+    // Check if this is a heading format
+    const isHeading = ['headingOne', 'headingTwo', 'headingThree'].includes(format)
     
     /*If the node is already aligned and change in indent is called we should unwrap it first and split the node to prevent
     messy, nested DOM structure and bugs due to that.*/
@@ -48,6 +53,61 @@ export const toggleBlock = (editor,format)=>{
         })
         return
     }
+    
+    // For headings with selection, we need special handling
+    if (isHeading && !isActive) {
+        // If there's a selection (non-collapsed), we should split the nodes at selection boundaries
+        if (!isCollapsed && selection) {
+            const [start, end] = Editor.edges(editor, selection)
+            const startPoint = Editor.start(editor, start)
+            const endPoint = Editor.end(editor, end)
+            
+            // Get the start and end of the blocks containing the selection
+            const [startBlock] = Editor.nodes(editor, {
+                at: start,
+                match: n => Editor.isBlock(editor, n)
+            })
+            const [endBlock] = Editor.nodes(editor, {
+                at: end,
+                match: n => Editor.isBlock(editor, n)
+            })
+            
+            if (startBlock && endBlock) {
+                const [startNode, startPath] = startBlock
+                const [endNode, endPath] = endBlock
+                
+                // If selection spans multiple blocks, we need to handle differently
+                if (startPath[0] !== endPath[0]) {
+                    // Apply heading to all selected blocks
+                    Transforms.setNodes(
+                        editor,
+                        { type: format },
+                        { 
+                            at: selection,
+                            match: n => Editor.isBlock(editor, n) 
+                        }
+                    )
+                    return
+                }
+                
+                // For single block selection, split only if not selecting the entire block
+                const blockStart = Editor.start(editor, startPath)
+                const blockEnd = Editor.end(editor, endPath)
+                
+                if (!Editor.isEqual(startPoint, blockStart) || !Editor.isEqual(endPoint, blockEnd)) {
+                    // Split at end first (to preserve the start position)
+                    if (!Editor.isEqual(endPoint, blockEnd)) {
+                        Transforms.splitNodes(editor, { at: end })
+                    }
+                    // Then split at start
+                    if (!Editor.isEqual(startPoint, blockStart)) {
+                        Transforms.splitNodes(editor, { at: start })
+                    }
+                }
+            }
+        }
+    }
+    
     Transforms.unwrapNodes(editor,{
         match:n => list_types.includes(!Editor.isEditor(n) && SlateElement.isElement(n) && n.type),
         split:true
