@@ -1,3 +1,5 @@
+'use client'
+
 import React, {useEffect, useState} from 'react';
 import ReactDOMServer from 'react-dom/server';
 import ReactQuill, { Quill,editor } from 'react-quill';
@@ -6,7 +8,10 @@ import 'react-quill/dist/quill.snow.css';
 import katex from "katex";
 import "katex/dist/katex.min.css";
 import CustomToolbar from './CustomToolbar'
-window.katex = katex;
+
+if (typeof window !== 'undefined') {
+    window.katex = katex;
+}
  
 // Quill.register('modules/ImageResize',ImageResize);
 const Editor=()=> {
