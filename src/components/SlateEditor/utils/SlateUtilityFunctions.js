@@ -29,6 +29,45 @@ export const toggleBlock = (editor,format)=>{
     const isIndent = alignment.includes(format)
     const isAligned = alignment.some(alignmentType => isBlockActive(editor,alignmentType))
     
+    // Check if format is a heading
+    const isHeading = ['headingOne', 'headingTwo', 'headingThree'].includes(format);
+    
+    // Get current selection
+    const { selection } = editor;
+    
+    // If it's a heading and there's a selection that doesn't span the entire block
+    if (isHeading && selection && !Editor.isCollapsed(editor, selection)) {
+        const [start, end] = Editor.edges(editor, selection);
+        const [block] = Editor.nodes(editor, {
+            at: selection,
+            match: n => Editor.isBlock(editor, n),
+        });
+        
+        if (block) {
+            const [, blockPath] = block;
+            const blockStart = Editor.start(editor, blockPath);
+            const blockEnd = Editor.end(editor, blockPath);
+            
+            // Check if selection doesn't span the entire block
+            if (!Editor.isEqual(editor, start, blockStart) || !Editor.isEqual(editor, end, blockEnd)) {
+                // Split at the start and end of selection
+                if (!Editor.isEqual(editor, end, blockEnd)) {
+                    Transforms.splitNodes(editor, { at: end });
+                }
+                if (!Editor.isEqual(editor, start, blockStart)) {
+                    Transforms.splitNodes(editor, { at: start });
+                }
+                
+                // Now apply the heading format to the selected portion
+                Transforms.setNodes(editor, {
+                    type: format,
+                }, {
+                    at: selection
+                });
+                return;
+            }
+        }
+    }
     
     /*If the node is already aligned and change in indent is called we should unwrap it first and split the node to prevent
     messy, nested DOM structure and bugs due to that.*/
