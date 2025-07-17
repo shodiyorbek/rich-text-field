@@ -9,8 +9,7 @@ const toolbarGroups = [
         {
             id:2,
             format:'fontSize',
-            type:'dropdown',
-            options:[{text:'Small',value:'small'},{text:'Normal',value:'normal'},{text:'Medium',value:'medium'},{text:'Huge',value:'huge'}]
+            type:'font-size'
         }
     ],
     [
