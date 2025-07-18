@@ -47,6 +47,38 @@ const TableContextMenu = (props)=>{
             }
         },
         {
+            icon:'insertColumnRight',
+            text:'Remove Columns to the Right',
+            action:{
+                type:'removeColumn',
+                position:'after'
+            }
+        },
+        {
+            icon:'insertColumnLeft',
+            text:'Remove Columns to the Left',
+            action:{
+                type:'removeColumn',
+                position:'at'
+            }
+        },
+        {
+            icon:'insertRowAbove',
+            text:'Remove Row Above',
+            action:{
+                type:'removeRow',
+                position:'at'
+            }
+        },
+        {
+            icon:'insertRowBelow',
+            text:'Remove Row Below',
+            action:{
+                type:'removeRow',
+                position:'after'
+            }
+        },
+        {
             icon:'trashCan',
             text:'Remove Table',
             action:{
@@ -64,6 +96,12 @@ const TableContextMenu = (props)=>{
                 break;
             case 'insertColumn':
                 table.insertColumn(position);
+                break;
+            case 'removeRow':
+                table.removeRow(position);
+                break;
+            case 'removeColumn':
+                table.removeColumn(position);
                 break;
             case 'remove':
                 table.removeTable();

@@ -77,6 +77,7 @@ const SlateEditor = () => {
             <Toolbar handleCodeToText={handleCodeToText} />
             <div className="editor-wrapper" style={{border:'1px solid #f3f3f3', padding:'0 10px'}}>
                 <Editable
+                    className='editor-content'
                     placeholder='Write something'
                     renderElement={renderElement} 
                     renderLeaf={renderLeaf}

@@ -5,7 +5,7 @@ import Image from '../Elements/Embed/Image'
 import Video from '../Elements/Embed/Video'
 import Table from '../Elements/Table/Table'
 
-const alignment = ['alignLeft','alignRight','alignCenter']
+const alignment = ['alignLeft','alignRight','alignCenter','justify']
 const list_types = ['orderedList','unorderedList']
 
 
@@ -26,7 +26,7 @@ export const toggleBlock = (editor,format)=>{
     const isList = list_types.includes(format)
     const isIndent = alignment.includes(format)
     const isAligned = alignment.some(alignmentType => isBlockActive(editor,alignmentType))
-    
+    console.log(editor,format)
     const { selection } = editor
     const isCollapsed = selection && Range.isCollapsed(selection)
     
@@ -233,6 +233,8 @@ export const getBlock = (props) => {
             return <div style={{listStylePosition:'inside'}} {...attributes} {...element.attr}>{children}</div>
         case 'alignCenter':
             return <div style={{display:'flex',alignItems:'center',listStylePosition:'inside',flexDirection:'column'}} {...attributes} {...element.attr}>{children}</div>
+        case 'justify':
+            return <div style={{textAlign:'justify',listStylePosition:'inside'}} {...attributes} {...element.attr}>{children}</div>
         case 'alignRight':
             return <div style={{display:'flex',alignItems:'flex-end',listStylePosition:'inside',flexDirection:'column'}} {...attributes} {...element.attr}>{children}</div>
         case 'list-item':

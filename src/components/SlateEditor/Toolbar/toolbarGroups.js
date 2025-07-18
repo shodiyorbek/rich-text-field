@@ -109,6 +109,11 @@ const toolbarGroups = [
             format:'alignRight',
             type:'block'
         },
+        {
+            id:77,
+            format:'justify',
+            type:'block'
+        }
     ],
     [
         {
@@ -130,22 +135,7 @@ const toolbarGroups = [
             id:23,
             type:'table'
         }
-    ],
-    [
-        {
-            id:25,
-            type:'id'
-        },
-        {
-            id:26,
-            type:'equation'
-        },
-        {
-            id:27,
-            type:'codeToText'
-        }
-    ],
-
+    ]
 
 
 

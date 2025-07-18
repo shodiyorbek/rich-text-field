@@ -12,22 +12,22 @@ const FontSize = () => {
 
   // Predefined font sizes in pixels
   const fontSizes = [
-    { label: '8', value: '8px' },
-    { label: '10', value: '10px' },
-    { label: '12', value: '12px' },
-    { label: '14', value: '14px' },
-    { label: '16', value: '16px' },
-    { label: '18', value: '18px' },
-    { label: '20', value: '20px' },
-    { label: '24', value: '24px' },
-    { label: '28', value: '28px' },
-    { label: '32', value: '32px' },
-    { label: '36', value: '36px' },
-    { label: '40', value: '40px' },
-    { label: '48', value: '48px' },
-    { label: '56', value: '56px' },
-    { label: '64', value: '64px' },
-    { label: '72', value: '72px' },
+    { label: '8px', value: '8px' },
+    { label: '10px', value: '10px' },
+    { label: '12px', value: '12px' },
+    { label: '14px', value: '14px' },
+    { label: '16px', value: '16px' },
+    { label: '18px', value: '18px' },
+    { label: '20px', value: '20px' },
+    { label: '24px', value: '24px' },
+    { label: '28px', value: '28px' },
+    { label: '32px', value: '32px' },
+    { label: '36px', value: '36px' },
+    { label: '40px', value: '40px' },
+    { label: '48px', value: '48px' },
+    { label: '56px', value: '56px' },
+    { label: '64px', value: '64px' },
+    { label: '72px', value: '72px' },
   ];
 
   // Get current font size

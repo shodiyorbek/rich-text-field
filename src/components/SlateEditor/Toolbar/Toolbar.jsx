@@ -83,6 +83,7 @@ const Toolbar = (props)=>{
                         {
                             group.map((element) => 
                                 {
+                                    console.log(element.type)
                                     switch (element.type) {
                                         case 'block' :
                                             return <BlockButton key={element.id} {...element}/>
@@ -100,7 +101,6 @@ const Toolbar = (props)=>{
                                             return <ColorPicker key={element.id} activeMark={activeMark} format={element.format} editor={editor}/>
                                         case 'table':
                                             return <TableSelector key={element.id} editor={editor}/>
-                                        
                                         default:
                                             return null
                                     }

@@ -32,6 +32,10 @@ box-shadow:  -8px 8px 13px #ededed,
     height: fit-content;
     padding: 12px 10px;
 }
+.editor-content:focus{
+    outline: none;
+    word-break: break-all;
+}
 table{
     width:100%;
 }

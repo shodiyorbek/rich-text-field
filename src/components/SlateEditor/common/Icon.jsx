@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdFormatBold, MdFormatItalic, MdStrikethroughS, MdFormatUnderlined, MdFormatQuote, MdFormatAlignLeft, MdFormatAlignCenter, MdFormatAlignRight, MdFormatListNumbered, MdFormatListBulleted,MdInsertLink,MdVideoLibrary,MdImage,MdAdd,MdKeyboardArrowRight, MdArrowForward} from 'react-icons/md'
+import { MdFormatBold, MdFormatItalic, MdStrikethroughS, MdFormatUnderlined, MdFormatQuote, MdFormatAlignLeft, MdFormatAlignCenter, MdFormatAlignRight, MdFormatListNumbered, MdFormatListBulleted,MdInsertLink,MdVideoLibrary,MdImage,MdAdd,MdKeyboardArrowRight, MdArrowForward, MdFormatAlignJustify} from 'react-icons/md'
 import { BsTypeH1, BsTypeH2, BsTypeH3, BsCameraVideoFill } from 'react-icons/bs'
 import { FaSuperscript,FaSubscript } from 'react-icons/fa'
 import { AiFillEdit,AiOutlineTable, AiOutlineInsertRowBelow, AiOutlineInsertRowRight,AiOutlineDelete, AiFillTag, AiOutlineUpload, AiOutlineArrowsAlt, AiOutlineInsertRowAbove, AiOutlineInsertRowLeft,AiFillHtml5 } from 'react-icons/ai'
@@ -38,7 +38,8 @@ const iconList={
     videoPlayer:<BsCameraVideoFill size={20}/>,
     insertHtml:<AiFillHtml5 size={20}/>,
     arrowRight:<MdArrowForward size={35}/>,
-    pen:<AiFillEdit size={20}/>
+    pen:<AiFillEdit size={20}/>,
+    justify:<MdFormatAlignJustify size={20}/>
 }
 
 
