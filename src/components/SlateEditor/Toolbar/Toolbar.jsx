@@ -11,14 +11,9 @@ import ColorPicker from '../Elements/Color Picker/ColorPicker'
 import LinkButton from '../Elements/Link/LinkButton'
 import Embed from '../Elements/Embed/Embed'
 import TableSelector from '../Elements/Table/TableSelector'
-import EquationButton from '../Elements/Equation/EquationButton'
-import Id from '../Elements/ID/Id'
 import TableContextMenu from '../Elements/TableContextMenu/TableContextMenu'
-import CodeToTextButton from '../Elements/CodeToText/CodeToTextButton'
-import HtmlContextMenu from '../Elements/CodeToText/HtmlContextMenu';
 import FontSize from '../Elements/FontSize/FontSize'
 const Toolbar = (props)=>{
-    const {handleCodeToText} = props
     const editor = useSlate();
     const isTable = useFormat(editor,'table');
     const [toolbarGroups,setToolbarGroups] = useState(defaultToolbarGroups);
@@ -105,12 +100,7 @@ const Toolbar = (props)=>{
                                             return <ColorPicker key={element.id} activeMark={activeMark} format={element.format} editor={editor}/>
                                         case 'table':
                                             return <TableSelector key={element.id} editor={editor}/>
-                                        case 'id':
-                                            return <Id editor={editor}/>
-                                        case 'equation':
-                                            return <EquationButton editor={editor}/>
-                                        case 'codeToText':
-                                            return <CodeToTextButton handleButtonClick={handleCodeToText}/>
+                                        
                                         default:
                                             return null
                                     }
@@ -121,7 +111,6 @@ const Toolbar = (props)=>{
                 )
             }
             <TableContextMenu editor={editor}/>
-            <HtmlContextMenu editor={editor} handleCodeToText={handleCodeToText} />
         </div>
     )
 }

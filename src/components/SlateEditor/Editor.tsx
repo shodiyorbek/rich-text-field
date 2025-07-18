@@ -9,9 +9,7 @@ import { getMarked, getBlock } from './utils/SlateUtilityFunctions.js'
 import withLinks from './plugins/withLinks.js'
 import withTables from './plugins/withTable.js'
 import withEmbeds from './plugins/withEmbeds.js'
-import withEquation from './plugins/withEquation.js'
 import './Editor.css'
-import CodeToText from './Elements/CodeToText/CodeToText'
 import { serialize } from './utils/serializer';
 
 // Memoized components to prevent unnecessary re-renders
@@ -28,7 +26,7 @@ Leaf.displayName = 'Leaf';
 const SlateEditor = () => {
     // Create editor instance once and keep it stable
     const editor = useMemo(() => {
-        return withEquation(withHistory(withEmbeds(withTables(withLinks(withReact(createEditor()))))));
+        return withHistory(withEmbeds(withTables(withLinks(withReact(createEditor())))));
     }, []);
     
     // Define initial value - keep it simple and stable
@@ -85,9 +83,6 @@ const SlateEditor = () => {
                     spellCheck={false} // Disable spellcheck to prevent DOM issues
                 />
             </div>
-            {htmlAction.showInput && 
-                <CodeToText {...htmlAction} handleCodeToText={handleCodeToText}/>
-            }
         </Slate>
     )
 }

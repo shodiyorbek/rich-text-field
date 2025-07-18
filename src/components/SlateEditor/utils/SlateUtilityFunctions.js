@@ -3,8 +3,6 @@ import {useSlateStatic} from 'slate-react'
 import Link from'../Elements/Link/Link'
 import Image from '../Elements/Embed/Image'
 import Video from '../Elements/Embed/Video'
-import Equation from '../Elements/Equation/Equation'
-import HtmlCode from '../Elements/CodeToText/HtmlCode'
 import Table from '../Elements/Table/Table'
 
 const alignment = ['alignLeft','alignRight','alignCenter']
@@ -255,10 +253,6 @@ export const getBlock = (props) => {
             return <Image {...props}/>
         case 'video':
             return <Video {...props}/>
-        case 'equation':
-            return <Equation {...props}/>
-        case 'htmlCode':
-            return <HtmlCode {...props}/>
         case 'paragraph':
             return <p {...attributes} {...(element.attr || {})}>{children}</p>
         default :
