@@ -5,10 +5,10 @@ import { createEditor, Descendant } from 'slate';
 import { withHistory } from "slate-history";
 import { Slate, Editable, withReact, ReactEditor, RenderElementProps, RenderLeafProps } from 'slate-react';
 import Toolbar from './Toolbar/Toolbar'
-import { getMarked, getBlock } from './utils/SlateUtilityFunctions.js'
-import withLinks from './plugins/withLinks.js'
-import withTables from './plugins/withTable.js'
-import withEmbeds from './plugins/withEmbeds.js'
+import { getMarked, getBlock } from './utils/SlateUtilityFunctions'
+import withLinks from './plugins/withLinks'
+import withTables from './plugins/withTable'
+import withEmbeds from './plugins/withEmbeds'
 import './Editor.css'
 import { serialize } from './utils/serializer';
 
